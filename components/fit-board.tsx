@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 
+// Print target 16358 × 14186 px (≈ 1.153 : 1). Same ratio at screen scale.
 const BASE_W = 1560
-const BASE_H = 1040
+const BASE_H = 1353
 
 export function FitBoard({ children }: { children: ReactNode }) {
   const [scale, setScale] = useState(1)

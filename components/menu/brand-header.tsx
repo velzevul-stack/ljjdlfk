@@ -2,28 +2,30 @@ import Image from 'next/image'
 
 export function BrandHeader() {
   return (
-    <header className="flex items-center justify-between gap-6 border-b-2 border-menu-line pb-4">
+    <header className="flex items-end justify-between gap-6">
       <div className="flex items-center gap-5">
-        <div className="relative h-[4.5rem] w-[20rem] shrink-0">
+        <h1 className="font-heading text-5xl font-black uppercase leading-[0.85] tracking-tight text-menu-dark">
+          Bistro
+          <br />
+          <span className="text-menu-brown">Burger</span>
+        </h1>
+        <div className="relative h-20 w-24 shrink-0">
           <Image
-            src="/emblem.svg"
-            alt="BISTRO ПЛЮС"
+            src="/emblems/brand-burger.png"
+            alt="Эмблема Bistro Burger"
             fill
-            className="object-contain object-left"
+            className="object-contain"
             priority
           />
         </div>
-        <span className="hidden h-12 w-px bg-menu-line sm:block" />
-        <p className="font-heading text-lg font-bold tracking-wide text-menu-muted">
-          вкусно. просто. рядом.
-        </p>
       </div>
+
       <div className="text-right">
-        <p className="font-heading text-2xl font-extrabold uppercase leading-none tracking-tight text-menu-dark">
+        <p className="font-heading text-2xl font-black uppercase leading-none tracking-tight text-menu-dark">
           Меню
         </p>
-        <p className="mt-1.5 font-heading text-sm font-bold uppercase tracking-[0.2em] text-menu-brown">
-          Бургеры · Шаурма · Хот-доги
+        <p className="mt-2 font-heading text-sm font-bold uppercase tracking-[0.22em] text-menu-brown">
+          вкусно · просто · рядом
         </p>
       </div>
     </header>

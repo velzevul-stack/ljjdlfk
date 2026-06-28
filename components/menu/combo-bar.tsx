@@ -1,74 +1,76 @@
 import Image from 'next/image'
-import { Plus, Heart } from 'lucide-react'
+import { Heart } from 'lucide-react'
 import { combos } from '@/lib/menu-data'
-
-function ComboImage({ src, alt }: { src: string; alt: string }) {
-  return (
-    <div className="relative h-12 w-14 shrink-0">
-      <Image src={src || '/placeholder.svg'} alt={alt} fill className="object-contain" />
-    </div>
-  )
-}
+import { cn } from '@/lib/utils'
 
 export function ComboBar() {
   return (
-    <div className="flex h-full items-stretch gap-4 rounded-2xl bg-menu-dark px-5 py-3 text-menu-oncream">
-      {/* Left label */}
-      <div className="flex w-40 shrink-0 flex-col justify-center">
-        <span className="font-heading text-3xl font-black leading-none tracking-tight text-menu-accent">
-          КОМБО
+    <div className="flex h-full flex-col gap-4 rounded-3xl bg-menu-dark px-6 py-5 text-menu-oncream">
+      {/* Header row */}
+      <div className="flex items-center gap-4">
+        <span className="grid size-16 shrink-0 place-items-center rounded-2xl bg-white/5 p-2 ring-1 ring-white/10">
+          <Image
+            src="/emblems/combo.png"
+            alt=""
+            width={56}
+            height={56}
+            className="size-full object-contain"
+            aria-hidden
+          />
         </span>
-        <span className="mt-1.5 text-[0.68rem] leading-snug text-menu-oncream/70">
-          Сэкономь на заказе — выбирай готовое комбо!
-        </span>
+        <div>
+          <h2 className="font-heading text-4xl font-black leading-none tracking-tight text-menu-accent">
+            КОМБО
+          </h2>
+          <p className="mt-1.5 text-sm leading-snug text-menu-oncream/70">
+            Сэкономь на заказе — выбирай готовое комбо!
+          </p>
+        </div>
+        <div className="ml-auto flex items-center gap-3 rounded-2xl bg-menu-brown px-5 py-3">
+          <Heart
+            className="size-6 shrink-0 text-menu-accent"
+            fill="currentColor"
+            aria-hidden
+          />
+          <p className="font-script text-2xl font-bold leading-tight text-menu-oncream">
+            Спасибо,
+            <br />
+            что вы с нами!
+          </p>
+        </div>
       </div>
 
       {/* Combo cards */}
-      <div className="grid flex-1 grid-cols-4 gap-3">
+      <div className="grid flex-1 grid-cols-5 gap-3">
         {combos.map((c) => (
           <div
             key={c.name}
-            className="flex flex-col justify-between rounded-xl bg-white/5 px-3 py-2 ring-1 ring-white/10"
+            className={cn(
+              'flex flex-col rounded-xl px-3.5 py-2.5 ring-1',
+              c.featured
+                ? 'bg-menu-accent/10 ring-menu-accent/50'
+                : 'bg-white/5 ring-white/10',
+            )}
           >
-            <div className="flex items-center justify-center gap-1">
-              <ComboImage src={c.images[0]} alt="" />
-              <Plus className="size-4 shrink-0 text-menu-accent" strokeWidth={3} aria-hidden />
-              <ComboImage src={c.images[1]} alt="" />
-            </div>
-            <div className="mt-1">
-              <h3 className="font-heading text-[0.82rem] font-extrabold leading-tight">
-                {c.name}
-              </h3>
-              <p className="text-[0.6rem] leading-snug text-menu-oncream/60">
-                {c.items}
-              </p>
-              <div className="mt-1 flex items-end justify-between gap-1">
-                <div className="flex items-baseline gap-1.5">
-                  <span className="text-[0.62rem] text-menu-oncream/45 line-through">
-                    {c.oldPrice}
-                  </span>
-                  <span className="font-heading text-lg font-black leading-none text-menu-accent">
-                    {c.newPrice}
-                    <span className="ml-0.5 text-[0.55rem] font-bold text-menu-oncream/70">
-                      BYN
-                    </span>
-                  </span>
-                </div>
-                <span className="rounded bg-menu-accent/15 px-1.5 py-0.5 text-[0.55rem] font-bold text-menu-accent">
-                  {c.save}
+            <h3 className="font-heading text-sm font-black leading-tight text-menu-oncream">
+              {c.name}
+            </h3>
+            <p className="mt-1 flex-1 text-[0.66rem] leading-snug text-menu-oncream/55">
+              {c.items}
+            </p>
+            <div className="mt-2 flex items-end justify-between gap-1.5">
+              <span className="font-heading text-xl font-black leading-none text-menu-accent">
+                {c.price}
+                <span className="ml-0.5 text-[0.55rem] font-bold text-menu-oncream/70">
+                  BYN
                 </span>
-              </div>
+              </span>
+              <span className="rounded-md bg-menu-accent/15 px-1.5 py-0.5 text-[0.56rem] font-bold leading-none text-menu-accent">
+                {c.save}
+              </span>
             </div>
           </div>
         ))}
-      </div>
-
-      {/* Thank-you block */}
-      <div className="flex w-44 shrink-0 flex-col items-center justify-center rounded-xl bg-menu-brown px-3 text-center">
-        <Heart className="size-5 text-menu-accent" fill="currentColor" aria-hidden />
-        <p className="mt-1 font-script text-2xl font-bold leading-tight text-menu-oncream">
-          Спасибо, что вы с нами!
-        </p>
       </div>
     </div>
   )

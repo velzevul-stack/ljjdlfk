@@ -1,75 +1,77 @@
-import type { LucideIcon } from 'lucide-react'
 import type { ReactNode } from 'react'
 import Image from 'next/image'
+import { Utensils } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
+/** The small rounded emblem badge that sits beside every section title. */
+export function Emblem({
+  src,
+  className,
+}: {
+  src: string
+  className?: string
+}) {
+  return (
+    <span
+      className={cn(
+        'grid size-12 shrink-0 place-items-center rounded-xl border-2 border-menu-line bg-menu-panel p-1.5',
+        className,
+      )}
+    >
+      <Image
+        src={src || '/placeholder.svg'}
+        alt=""
+        width={44}
+        height={44}
+        className="size-full object-contain"
+        aria-hidden
+      />
+    </span>
+  )
+}
+
 /**
- * A bordered, rounded-rectangle section block — matches the reference board,
- * where every category is outlined and the title sits in the top-left with a
- * small icon badge.
+ * A bordered, rounded-rectangle section block. Every category is outlined with
+ * soft corners and titled with an emblem + bold heading in the top-left —
+ * matching the reference board (no solid-black title bars).
  */
 export function Section({
-  icon: Icon,
+  emblem,
   title,
   right,
   children,
   className,
+  bodyClassName,
 }: {
-  icon: LucideIcon
+  emblem: string
   title: string
   right?: ReactNode
   children: ReactNode
   className?: string
+  bodyClassName?: string
 }) {
   return (
     <section
       className={cn(
-        'flex flex-col rounded-[1.4rem] border-2 border-menu-line bg-menu-cream/40 px-5 pb-4 pt-3.5',
+        'flex flex-col rounded-[1.4rem] border-2 border-menu-line bg-menu-panel/35 px-5 pb-4 pt-3',
         className,
       )}
     >
       <header className="mb-3 flex items-center gap-3">
-        <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-menu-dark text-menu-oncream">
-          <Icon className="size-5" strokeWidth={2.25} aria-hidden />
-        </span>
-        <h2 className="font-heading text-[1.6rem] font-extrabold uppercase leading-none tracking-tight text-menu-dark">
+        <Emblem src={emblem} />
+        <h2 className="font-heading text-[1.6rem] font-black uppercase leading-none tracking-tight text-menu-dark">
           {title}
         </h2>
         {right ? <div className="ml-auto">{right}</div> : null}
       </header>
-      {children}
+      <div className={cn('flex min-h-0 flex-1 flex-col', bodyClassName)}>
+        {children}
+      </div>
     </section>
   )
 }
 
-/**
- * A standalone category header row: an icon badge, the title, and an optional
- * right-aligned slot (size labels, column headers, etc.).
- */
-export function SectionTitle({
-  icon: Icon,
-  right,
-  children,
-  className,
-}: {
-  icon: LucideIcon
-  right?: ReactNode
-  children: ReactNode
-  className?: string
-}) {
-  return (
-    <header className={cn('flex items-center gap-3', className)}>
-      <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-menu-dark text-menu-oncream">
-        <Icon className="size-5" strokeWidth={2.25} aria-hidden />
-      </span>
-      <h2 className="font-heading text-[1.6rem] font-extrabold uppercase leading-none tracking-tight text-menu-text">
-        {children}
-      </h2>
-      {right ? <div className="ml-auto">{right}</div> : null}
-    </header>
-  )
-}
-
+/** Prominent brown price pill with a small BYN suffix. */
 export function PriceBadge({
   children,
   size = 'md',
@@ -82,18 +84,18 @@ export function PriceBadge({
   return (
     <span
       className={cn(
-        'inline-flex items-baseline gap-1 rounded-lg bg-menu-brown font-heading font-extrabold leading-none text-menu-oncream shadow-sm',
-        size === 'sm' && 'px-2 py-1',
-        size === 'md' && 'px-2.5 py-1.5',
-        size === 'lg' && 'px-3 py-2',
+        'inline-flex items-baseline gap-1 rounded-xl bg-menu-brown font-heading font-black leading-none text-menu-oncream shadow-sm ring-1 ring-black/5',
+        size === 'sm' && 'px-2.5 py-1.5',
+        size === 'md' && 'px-3 py-2',
+        size === 'lg' && 'px-3.5 py-2.5',
         className,
       )}
     >
       <span
         className={cn(
-          size === 'sm' && 'text-base',
-          size === 'md' && 'text-xl',
-          size === 'lg' && 'text-2xl',
+          size === 'sm' && 'text-lg',
+          size === 'md' && 'text-2xl',
+          size === 'lg' && 'text-3xl',
         )}
       >
         {children}
@@ -103,16 +105,16 @@ export function PriceBadge({
   )
 }
 
-/** Small size badge with its price stacked (e.g. "M" over "10 BYN"). */
+/** A single S/M/L size chip with its price stacked beneath the size letter. */
 export function SizePrice({ label, price }: { label: string; price: string }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-lg border-2 border-menu-line bg-menu-cream px-2.5 py-1">
-      <span className="grid size-6 place-items-center rounded-full bg-menu-dark font-heading text-xs font-extrabold text-menu-oncream">
+    <span className="inline-flex flex-col items-center gap-1 rounded-xl border-2 border-menu-line bg-menu-cream px-3 py-1.5">
+      <span className="grid size-6 place-items-center rounded-full bg-menu-dark font-heading text-xs font-black text-menu-oncream">
         {label}
       </span>
-      <span className="font-heading text-lg font-extrabold leading-none text-menu-brown">
+      <span className="font-heading text-xl font-black leading-none text-menu-brown">
         {price}
-        <span className="ml-0.5 text-[0.58rem] font-bold text-menu-muted">
+        <span className="ml-0.5 text-[0.55rem] font-bold text-menu-muted">
           BYN
         </span>
       </span>
@@ -120,18 +122,26 @@ export function SizePrice({ label, price }: { label: string; price: string }) {
   )
 }
 
-export function HitBadge() {
+/** Header row of S / M / L size dots used above sized sections. */
+export function SizeDots({ labels = ['S', 'M', 'L'] }: { labels?: string[] }) {
   return (
-    <span className="inline-block rounded-md bg-menu-accent px-1.5 py-0.5 font-heading text-[0.62rem] font-extrabold uppercase tracking-wider text-menu-accent-ink">
-      Хит
-    </span>
+    <div className="flex items-center gap-2.5">
+      {labels.map((l) => (
+        <span
+          key={l}
+          className="grid size-9 place-items-center rounded-full border-2 border-menu-brown font-heading text-sm font-black text-menu-brown"
+        >
+          {l}
+        </span>
+      ))}
+    </div>
   )
 }
 
-export function SizeDot({ label }: { label: string }) {
+export function HitBadge() {
   return (
-    <span className="grid size-7 place-items-center rounded-full border-2 border-menu-brown font-heading text-xs font-extrabold text-menu-brown">
-      {label}
+    <span className="inline-block rounded-md bg-menu-accent px-2 py-0.5 font-heading text-xs font-black uppercase tracking-wider text-menu-accent-ink shadow-sm">
+      Хит
     </span>
   )
 }
@@ -140,24 +150,28 @@ export function Divider() {
   return <div className="h-px w-full bg-menu-line" />
 }
 
+/**
+ * Photo placeholder. Real product photography can be dropped into /public/food
+ * later; until then this renders a tidy framed slot instead of a broken image.
+ */
 export function FoodPhoto({
-  src,
   alt,
   className,
 }: {
-  src: string
+  src?: string
   alt: string
   className?: string
 }) {
   return (
-    <div className={cn('relative shrink-0', className)}>
-      <Image
-        src={src || '/placeholder.svg'}
-        alt={alt}
-        fill
-        sizes="320px"
-        className="object-contain"
-      />
+    <div
+      className={cn(
+        'grid shrink-0 place-items-center overflow-hidden rounded-2xl border-2 border-dashed border-menu-line bg-menu-cream',
+        className,
+      )}
+      role="img"
+      aria-label={alt}
+    >
+      <Utensils className="size-6 text-menu-line" strokeWidth={2} aria-hidden />
     </div>
   )
 }

@@ -9,6 +9,7 @@ export type Burger = {
 
 export type Shawarma = {
   name: string
+  s: string
   m: string
   l: string
   ingredients: string
@@ -86,6 +87,7 @@ export const burgers: Burger[] = [
 export const shawarmas: Shawarma[] = [
   {
     name: 'Классическая',
+    s: '9',
     m: '10',
     l: '12',
     ingredients:
@@ -95,6 +97,7 @@ export const shawarmas: Shawarma[] = [
   },
   {
     name: 'Сырная',
+    s: '10',
     m: '12',
     l: '14',
     ingredients:
@@ -103,6 +106,7 @@ export const shawarmas: Shawarma[] = [
   },
   {
     name: 'Острая',
+    s: '10',
     m: '12',
     l: '14',
     ingredients:
