@@ -52,7 +52,7 @@ function ShawarmaSection() {
               </div>
             </div>
             {i < shawarmas.length - 1 ? (
-              <div className="py-3">
+              <div className="py-2">
                 <Divider />
               </div>
             ) : null}
@@ -91,7 +91,7 @@ function SnacksSection() {
               </div>
             </div>
             {i < snacks.length - 1 ? (
-              <div className="py-2.5">
+              <div className="py-2">
                 <Divider />
               </div>
             ) : null}

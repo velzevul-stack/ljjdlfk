@@ -15,7 +15,7 @@ export function MenuBoard() {
         <RightColumn />
       </div>
 
-      <div className="h-[330px] shrink-0">
+      <div className="h-[300px] shrink-0">
         <ComboBar />
       </div>
     </div>

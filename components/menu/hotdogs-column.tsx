@@ -30,7 +30,7 @@ function HotDogsSection() {
               </div>
             </div>
             {i < hotDogs.length - 1 ? (
-              <div className="py-2.5">
+              <div className="py-2">
                 <Divider />
               </div>
             ) : null}

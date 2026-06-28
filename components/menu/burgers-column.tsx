@@ -32,7 +32,7 @@ export function BurgersColumn() {
               </div>
             </div>
             {i < burgers.length - 1 ? (
-              <div className="py-3">
+              <div className="py-2">
                 <Divider />
               </div>
             ) : null}
