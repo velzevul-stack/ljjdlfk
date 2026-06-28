@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 
 export function ComboBar() {
   return (
-    <div className="flex h-full flex-col gap-3 rounded-3xl bg-menu-dark px-6 py-4 text-menu-oncream">
+    <div className="flex h-full flex-col gap-2.5 rounded-3xl bg-menu-dark px-6 py-3.5 text-menu-oncream">
       {/* Header row */}
       <div className="flex items-center gap-4">
         <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-white/5 p-1.5 ring-1 ring-white/10">
@@ -39,12 +39,12 @@ export function ComboBar() {
       </div>
 
       {/* Combo cards — all combos in a 5 × 2 grid */}
-      <div className="grid flex-1 grid-cols-5 grid-rows-2 gap-2.5">
+      <div className="grid flex-1 grid-cols-5 grid-rows-2 gap-2">
         {combos.map((c) => (
           <div
             key={c.name}
             className={cn(
-              'flex flex-col rounded-xl px-3 py-2 ring-1',
+              'flex flex-col rounded-xl px-3 py-1.5 ring-1',
               c.featured
                 ? 'bg-menu-accent/10 ring-menu-accent/50'
                 : 'bg-white/5 ring-white/10',

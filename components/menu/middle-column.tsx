@@ -104,7 +104,7 @@ function SnacksSection() {
 
 export function MiddleColumn() {
   return (
-    <div className="flex h-full flex-col gap-4">
+    <div className="flex h-full flex-col gap-3">
       <ShawarmaSection />
       <SnacksSection />
     </div>

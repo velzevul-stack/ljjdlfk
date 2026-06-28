@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
-/** The small rounded emblem badge that sits beside every section title. */
+/** The illustrated emblem that sits inline beside every section title. */
 export function Emblem({
   src,
   className,
@@ -12,18 +12,15 @@ export function Emblem({
 }) {
   return (
     <span
-      className={cn(
-        'grid size-12 shrink-0 place-items-center rounded-xl border-2 border-menu-line bg-menu-panel p-1.5',
-        className,
-      )}
+      className={cn('relative block size-12 shrink-0', className)}
+      aria-hidden
     >
       <Image
         src={src || '/placeholder.svg'}
         alt=""
-        width={44}
-        height={44}
-        className="size-full object-contain"
-        aria-hidden
+        fill
+        sizes="56px"
+        className="object-contain"
       />
     </span>
   )
@@ -52,13 +49,13 @@ export function Section({
   return (
     <section
       className={cn(
-        'flex flex-col rounded-[1.4rem] border-2 border-menu-line bg-menu-panel/35 px-5 pb-4 pt-3',
+        'flex flex-col rounded-[1.4rem] border border-menu-line bg-menu-panel/55 px-5 pb-3 pt-3',
         className,
       )}
     >
-      <header className="mb-3 flex items-center gap-3">
+      <header className="mb-2 flex items-center gap-3">
         <Emblem src={emblem} />
-        <h2 className="font-heading text-[1.6rem] font-black uppercase leading-none tracking-tight text-menu-dark">
+        <h2 className="font-heading text-[1.75rem] font-black uppercase leading-none tracking-tight text-menu-dark">
           {title}
         </h2>
         {right ? <div className="ml-auto">{right}</div> : null}
@@ -124,11 +121,11 @@ export function SizePrice({ label, price }: { label: string; price: string }) {
 /** Header row of S / M / L size dots used above sized sections. */
 export function SizeDots({ labels = ['S', 'M', 'L'] }: { labels?: string[] }) {
   return (
-    <div className="flex items-center gap-2.5">
+    <div className="flex items-center gap-2">
       {labels.map((l) => (
         <span
           key={l}
-          className="grid size-9 place-items-center rounded-full border-2 border-menu-brown font-heading text-sm font-black text-menu-brown"
+          className="grid size-9 place-items-center rounded-full bg-menu-dark font-heading text-sm font-black text-menu-oncream"
         >
           {l}
         </span>

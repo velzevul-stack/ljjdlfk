@@ -73,7 +73,7 @@ function HotDishesSection() {
 
 export function RightColumn() {
   return (
-    <div className="flex h-full flex-col gap-4">
+    <div className="flex h-full flex-col gap-3">
       <HotDogsSection />
       <HotDishesSection />
     </div>
