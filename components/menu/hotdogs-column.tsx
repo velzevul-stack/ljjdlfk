@@ -1,9 +1,10 @@
 import { hotDogs } from '@/lib/menu-data'
 import { Section, PriceText, Divider, FoodPhoto } from './parts'
+import { HotDishesSection } from './middle-column'
 
-export function RightColumn() {
+function HotDogsSection() {
   return (
-    <Section emblem="/emblems/hotdogs.png" title="Хот-доги" className="h-full">
+    <Section emblem="/emblems/hotdogs.png" title="Хот-доги" className="flex-1">
       <div className="flex flex-1 flex-col">
         {hotDogs.map((h, i) => (
           <div key={h.name} className="flex flex-1 flex-col justify-center">
@@ -11,7 +12,7 @@ export function RightColumn() {
               <FoodPhoto
                 src={h.image}
                 alt={h.name}
-                className="h-[4.6rem] w-[6rem]"
+                className="h-[5.2rem] w-[6.8rem]"
               />
               <div className="min-w-0 flex-1">
                 <div className="flex items-start justify-between gap-2">
@@ -34,5 +35,14 @@ export function RightColumn() {
         ))}
       </div>
     </Section>
+  )
+}
+
+export function RightColumn() {
+  return (
+    <div className="flex h-full flex-col gap-4">
+      <HotDogsSection />
+      <HotDishesSection />
+    </div>
   )
 }

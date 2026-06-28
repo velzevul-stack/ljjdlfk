@@ -1,21 +1,14 @@
 import Image from 'next/image'
 import { comboBar } from '@/lib/menu-data'
-import { Emblem } from './parts'
 
 export function ComboBar() {
   return (
     <div className="flex h-[9.5rem] shrink-0 items-stretch gap-5 rounded-[1.5rem] bg-menu-dark px-7 py-4 text-menu-oncream">
       {/* Label */}
-      <div className="flex shrink-0 flex-col justify-center pr-3">
-        <div className="flex items-center gap-3">
-          <Emblem src="/emblems/combo.png" className="size-9" />
-          <span className="font-heading text-[2.4rem] font-black uppercase leading-none tracking-tight text-menu-accent">
-            Комбо
-          </span>
-        </div>
-        <p className="mt-1.5 text-sm font-medium text-menu-oncream/70">
-          выгоднее, чем по отдельности
-        </p>
+      <div className="flex shrink-0 items-center pr-2">
+        <span className="font-heading text-[2.6rem] font-black uppercase leading-none tracking-tight text-menu-accent">
+          Комбо
+        </span>
       </div>
 
       {/* Combos */}

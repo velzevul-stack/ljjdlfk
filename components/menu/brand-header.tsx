@@ -2,27 +2,19 @@ import Image from 'next/image'
 
 export function BrandHeader() {
   return (
-    <header className="flex items-start justify-between gap-4 px-1">
-      <div className="shrink-0">
-        <h1 className="font-heading font-black uppercase leading-[0.82] tracking-tight text-menu-dark">
-          <span className="block text-[3.9rem]">Bistro</span>
-          <span className="block text-[3.9rem]">Плюс</span>
-        </h1>
-        <p className="mt-2.5 text-base font-medium lowercase tracking-wide text-menu-brown-ink">
-          вкусно. просто. рядом.
-        </p>
-      </div>
-
-      <div className="relative mt-1 h-[5.5rem] w-[7rem] shrink-0">
+    <header className="px-1 pt-1">
+      <div className="relative h-[5.4rem] w-full">
         <Image
-          src="/emblems/brand-burger.png"
-          alt=""
+          src="/brand/bistro-burger-wordmark.svg"
+          alt="Bistro Burger"
           fill
-          className="object-contain object-top"
-          aria-hidden
           priority
+          className="object-contain object-left"
         />
       </div>
+      <p className="mt-2 pl-1 text-base font-medium lowercase tracking-wide text-menu-brown-ink">
+        вкусно. просто. рядом.
+      </p>
     </header>
   )
 }

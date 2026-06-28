@@ -25,7 +25,7 @@ function ShawarmaSection() {
               <FoodPhoto
                 src={s.image}
                 alt={s.name}
-                className="h-[4.8rem] w-[6rem]"
+                className="h-[7rem] w-[8.6rem]"
               />
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
@@ -52,7 +52,7 @@ function ShawarmaSection() {
               </div>
             </div>
             {i < shawarmas.length - 1 ? (
-              <div className="py-2">
+              <div className="py-2.5">
                 <Divider />
               </div>
             ) : null}
@@ -63,9 +63,13 @@ function ShawarmaSection() {
   )
 }
 
-function HotDishesSection() {
+export function HotDishesSection({ className }: { className?: string }) {
   return (
-    <Section emblem="/emblems/hot-dishes.png" title="Горячие блюда">
+    <Section
+      emblem="/emblems/hot-dishes.png"
+      title="Горячие блюда"
+      className={className}
+    >
       <div className="grid grid-cols-2 gap-6">
         {hotDishes.map((d) => (
           <div key={d.name} className="flex flex-col">
@@ -78,7 +82,7 @@ function HotDishesSection() {
             <FoodPhoto
               src={d.image}
               alt={d.name}
-              className="my-2 h-[5rem] w-full"
+              className="my-2 h-[5.4rem] w-full"
             />
             <p className="text-sm leading-snug text-menu-muted">
               {d.ingredients}
@@ -103,7 +107,7 @@ function SnacksSection() {
               <FoodPhoto
                 src={s.image}
                 alt={s.name}
-                className="h-[3.6rem] w-[4.6rem]"
+                className="h-[4.2rem] w-[5.2rem]"
               />
               <h3 className="flex-1 font-heading text-lg font-black text-menu-text">
                 {s.name}
@@ -120,7 +124,7 @@ function SnacksSection() {
               </div>
             </div>
             {i < snacks.length - 1 ? (
-              <div className="py-2">
+              <div className="py-2.5">
                 <Divider />
               </div>
             ) : null}
@@ -133,9 +137,8 @@ function SnacksSection() {
 
 export function MiddleColumn() {
   return (
-    <div className="flex h-full flex-col gap-3">
+    <div className="flex h-full flex-col gap-4">
       <ShawarmaSection />
-      <HotDishesSection />
       <SnacksSection />
     </div>
   )

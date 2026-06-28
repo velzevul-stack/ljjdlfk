@@ -58,7 +58,7 @@ export function Section({
   if (variant === 'bar') {
     return (
       <section className={cn('flex flex-col', className)}>
-        <header className="mb-3 flex items-center">
+        <header className="mb-2.5 flex items-center">
           <div className="inline-flex items-center gap-3 rounded-2xl bg-menu-dark px-5 py-2.5">
             <Emblem src={emblem} className="size-7" invert />
             <h2 className="font-heading text-[1.55rem] font-black uppercase leading-none tracking-tight text-menu-oncream">
@@ -67,7 +67,12 @@ export function Section({
           </div>
           {right ? <div className="ml-auto">{right}</div> : null}
         </header>
-        <div className={cn('flex min-h-0 flex-1 flex-col', bodyClassName)}>
+        <div
+          className={cn(
+            'flex min-h-0 flex-1 flex-col rounded-[1.5rem] border-2 border-menu-line bg-menu-panel/60 px-5 py-2',
+            bodyClassName,
+          )}
+        >
           {children}
         </div>
       </section>

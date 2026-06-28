@@ -17,7 +17,7 @@ export function BurgersColumn() {
               <FoodPhoto
                 src={b.image}
                 alt={b.name}
-                className="h-[5.4rem] w-[6.4rem]"
+                className="h-[6.6rem] w-[7.6rem]"
               />
               <div className="min-w-0 flex-1">
                 <div className="flex items-start justify-between gap-2">
