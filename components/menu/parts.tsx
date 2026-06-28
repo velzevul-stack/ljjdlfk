@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react'
 import Image from 'next/image'
-import { Utensils } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 /** The small rounded emblem badge that sits beside every section title. */
@@ -151,10 +150,12 @@ export function Divider() {
 }
 
 /**
- * Photo placeholder. Real product photography can be dropped into /public/food
- * later; until then this renders a tidy framed slot instead of a broken image.
+ * Real product photo, sliced from the reference board. It sits directly on the
+ * cream background (no frame) with object-contain so the cut-out shape reads
+ * cleanly, exactly like the reference menu.
  */
 export function FoodPhoto({
+  src,
   alt,
   className,
 }: {
@@ -163,15 +164,14 @@ export function FoodPhoto({
   className?: string
 }) {
   return (
-    <div
-      className={cn(
-        'grid shrink-0 place-items-center overflow-hidden rounded-2xl border-2 border-dashed border-menu-line bg-menu-cream',
-        className,
-      )}
-      role="img"
-      aria-label={alt}
-    >
-      <Utensils className="size-6 text-menu-line" strokeWidth={2} aria-hidden />
+    <div className={cn('relative shrink-0', className)}>
+      <Image
+        src={src || '/placeholder.svg'}
+        alt={alt}
+        fill
+        sizes="240px"
+        className="object-contain"
+      />
     </div>
   )
 }
