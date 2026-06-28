@@ -8,7 +8,7 @@ export function BurgersColumn() {
       emblem="/emblems/burgers.png"
       title="Бургеры"
       variant="bar"
-      className="h-full"
+      className="min-h-0 flex-1"
     >
       <div className="flex flex-1 flex-col">
         {burgers.map((b, i) => (

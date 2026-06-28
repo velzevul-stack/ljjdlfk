@@ -14,14 +14,14 @@ export function Emblem({
 }) {
   return (
     <span
-      className={cn('relative block size-11 shrink-0', className)}
+      className={cn('relative block size-10 shrink-0', className)}
       aria-hidden
     >
       <Image
         src={src || '/placeholder.svg'}
         alt=""
         fill
-        sizes="56px"
+        sizes="48px"
         className={cn(
           'object-contain',
           invert && '[filter:brightness(0)_invert(1)]',
@@ -33,9 +33,9 @@ export function Emblem({
 
 /**
  * A category block. Two title treatments, matching the reference board:
- *  - variant="bar": a solid dark-brown rounded title bar with a white icon and
- *    white heading, sitting on the open cream background (no panel) — БУРГЕРЫ.
- *  - variant="panel" (default): a soft rounded panel with a subtle border and
+ *  - variant="bar": a solid dark-brown rounded title pill with a white icon and
+ *    white heading, sitting on the open cream background — used by БУРГЕРЫ.
+ *  - variant="panel" (default): a soft rounded panel with a visible border and
  *    an inline emblem + dark heading — everything else.
  */
 export function Section({
@@ -59,9 +59,9 @@ export function Section({
     return (
       <section className={cn('flex flex-col', className)}>
         <header className="mb-3 flex items-center">
-          <div className="inline-flex items-center gap-3 rounded-2xl bg-menu-dark px-5 py-2.5 shadow-sm">
-            <Emblem src={emblem} className="size-8" invert />
-            <h2 className="font-heading text-[1.7rem] font-black uppercase leading-none tracking-tight text-menu-oncream">
+          <div className="inline-flex items-center gap-3 rounded-2xl bg-menu-dark px-5 py-2.5">
+            <Emblem src={emblem} className="size-7" invert />
+            <h2 className="font-heading text-[1.55rem] font-black uppercase leading-none tracking-tight text-menu-oncream">
               {title}
             </h2>
           </div>
@@ -77,13 +77,13 @@ export function Section({
   return (
     <section
       className={cn(
-        'flex flex-col rounded-[1.4rem] border border-menu-line bg-menu-panel/55 px-5 pb-3 pt-3',
+        'flex flex-col rounded-[1.5rem] border-2 border-menu-line bg-menu-panel/60 px-5 pb-4 pt-3.5',
         className,
       )}
     >
-      <header className="mb-2 flex items-center gap-3">
+      <header className="mb-2.5 flex items-center gap-3">
         <Emblem src={emblem} />
-        <h2 className="font-heading text-[1.7rem] font-black uppercase leading-none tracking-tight text-menu-dark">
+        <h2 className="font-heading text-[1.55rem] font-black uppercase leading-none tracking-tight text-menu-dark">
           {title}
         </h2>
         {right ? <div className="ml-auto">{right}</div> : null}
@@ -124,7 +124,7 @@ export function PriceBadge({
       >
         {children}
       </span>
-      <span className="text-[0.6rem] font-bold opacity-70">BYN</span>
+      <span className="text-[0.58rem] font-bold opacity-70">BYN</span>
     </span>
   )
 }
@@ -134,7 +134,7 @@ export function PriceText({ children }: { children: ReactNode }) {
   return (
     <span className="inline-flex items-baseline gap-1 font-heading font-black leading-none text-menu-brown-ink">
       <span className="text-2xl">{children}</span>
-      <span className="text-[0.6rem] font-bold opacity-70">BYN</span>
+      <span className="text-[0.58rem] font-bold opacity-70">BYN</span>
     </span>
   )
 }
@@ -142,8 +142,8 @@ export function PriceText({ children }: { children: ReactNode }) {
 /** A single price chip beneath the S/M/L header, no letter inside. */
 export function SizePrice({ price }: { price: string }) {
   return (
-    <span className="inline-flex w-[3.5rem] items-baseline justify-center gap-0.5 rounded-xl bg-menu-chip px-2 py-2 font-heading font-black leading-none text-menu-dark">
-      <span className="text-xl">{price}</span>
+    <span className="inline-flex w-[3.4rem] items-baseline justify-center gap-0.5 rounded-xl bg-menu-chip px-2 py-2 font-heading font-black leading-none text-menu-dark">
+      <span className="text-lg">{price}</span>
       <span className="text-[0.5rem] font-bold opacity-70">BYN</span>
     </span>
   )
@@ -152,11 +152,11 @@ export function SizePrice({ price }: { price: string }) {
 /** Header row of S / M / L outlined circles used above sized sections. */
 export function SizeDots({ labels = ['S', 'M', 'L'] }: { labels?: string[] }) {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2.5">
       {labels.map((l) => (
         <span
           key={l}
-          className="grid size-9 place-items-center rounded-full border-[2.5px] border-menu-dark font-heading text-sm font-black text-menu-dark"
+          className="grid size-8 place-items-center rounded-full border-[2.5px] border-menu-dark font-heading text-sm font-black text-menu-dark"
         >
           {l}
         </span>
@@ -165,37 +165,23 @@ export function SizeDots({ labels = ['S', 'M', 'L'] }: { labels?: string[] }) {
   )
 }
 
-/** Yellow starburst "вспышка" seal with ХИТ text, as on the reference board. */
+/** Flat yellow "ХИТ" badge — a rounded rectangle exactly like the reference. */
 export function HitBadge({ className }: { className?: string }) {
-  const spikes = 12
-  const outer = 50
-  const inner = 41
-  const cx = 50
-  const cy = 50
-  const step = Math.PI / spikes
-  const pts: string[] = []
-  for (let i = 0; i < 2 * spikes; i++) {
-    const r = i % 2 === 0 ? outer : inner
-    const a = i * step - Math.PI / 2
-    pts.push(`${(cx + r * Math.cos(a)).toFixed(2)},${(cy + r * Math.sin(a)).toFixed(2)}`)
-  }
   return (
     <span
-      className={cn('relative inline-grid size-9 place-items-center', className)}
-      aria-label="Хит"
+      className={cn(
+        'inline-flex items-center rounded-md bg-menu-accent px-2 py-1 font-heading text-[0.72rem] font-black uppercase leading-none tracking-wide text-menu-accent-ink',
+        className,
+      )}
     >
-      <svg viewBox="0 0 100 100" className="absolute inset-0 size-full">
-        <polygon points={pts.join(' ')} fill="var(--menu-accent)" />
-      </svg>
-      <span className="relative font-heading text-[0.62rem] font-black uppercase tracking-tight text-menu-accent-ink">
-        Хит
-      </span>
+      Хит
     </span>
   )
 }
 
+/** Thin divider line between list items. */
 export function Divider() {
-  return <div className="h-px w-full bg-menu-line" />
+  return <div className="h-px w-full bg-menu-divider" />
 }
 
 /**

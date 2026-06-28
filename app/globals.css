@@ -15,6 +15,7 @@
   --color-menu-cream: var(--menu-cream);
   --color-menu-panel: var(--menu-panel);
   --color-menu-line: var(--menu-line);
+  --color-menu-divider: var(--menu-divider);
   --color-menu-dark: var(--menu-dark);
   --color-menu-brown: var(--menu-brown);
   --color-menu-brown-ink: var(--menu-brown-ink);
@@ -67,19 +68,20 @@
 :root {
   color-scheme: light;
 
-  /* Menu board palette — sampled from the reference board */
-  --menu-cream: #fbf3e7;
-  --menu-panel: #f6ecda;
-  --menu-line: #e6d8bf;
-  --menu-dark: #2f1f0e;
-  --menu-brown: #bd8348;
-  --menu-brown-ink: #8a6234;
-  --menu-chip: #dcc498;
-  --menu-text: #33271a;
-  --menu-muted: #97795a;
-  --menu-accent: #f4c13a;
-  --menu-accent-ink: #2f1f0e;
-  --menu-oncream: #fbf3e7;
+  /* Menu board palette — sampled from the reference board (warm, brown) */
+  --menu-cream: #f3e7cf;
+  --menu-panel: #f8efda;
+  --menu-line: #dcc8a2;
+  --menu-divider: #e7d7b6;
+  --menu-dark: #33220f;
+  --menu-brown: #b67a3c;
+  --menu-brown-ink: #875b2c;
+  --menu-chip: #e3c994;
+  --menu-text: #3a2a18;
+  --menu-muted: #9a7c5b;
+  --menu-accent: #f6c63c;
+  --menu-accent-ink: #33220f;
+  --menu-oncream: #f6ecd6;
 
   --background: #fbf3e7;
   --foreground: #2a221c;

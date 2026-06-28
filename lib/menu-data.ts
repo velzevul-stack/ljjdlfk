@@ -186,6 +186,21 @@ export const hotDogs: HotDog[] = [
   },
 ]
 
+export type ComboBarItem = {
+  label: string
+  price: string
+  image: string
+}
+
+/** Compact combo strip shown in the bottom bar (like the reference photo). */
+export const comboBar: ComboBarItem[] = [
+  { label: 'Бургер + напиток', price: '9', image: '/combos/burger-combo.png' },
+  { label: 'Шаурма + напиток', price: '11', image: '/combos/shawarma-combo.png' },
+  { label: 'Хот-дог + напиток', price: '6', image: '/combos/hotdog-combo.png' },
+  { label: 'Комбо на двоих', price: '17', image: '/combos/duo-combo.png' },
+  { label: 'Делюкс комбо', price: '13', image: '/combos/deluxe-combo.png' },
+]
+
 export const combos: Combo[] = [
   {
     name: 'Бургер Делюкс-комбо',
