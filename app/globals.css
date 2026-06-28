@@ -18,6 +18,7 @@
   --color-menu-dark: var(--menu-dark);
   --color-menu-brown: var(--menu-brown);
   --color-menu-brown-ink: var(--menu-brown-ink);
+  --color-menu-chip: var(--menu-chip);
   --color-menu-text: var(--menu-text);
   --color-menu-muted: var(--menu-muted);
   --color-menu-accent: var(--menu-accent);
@@ -73,6 +74,7 @@
   --menu-dark: #2f1f0e;
   --menu-brown: #bd8348;
   --menu-brown-ink: #8a6234;
+  --menu-chip: #dcc498;
   --menu-text: #33271a;
   --menu-muted: #97795a;
   --menu-accent: #f4c13a;

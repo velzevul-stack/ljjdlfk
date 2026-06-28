@@ -6,13 +6,15 @@ import { cn } from '@/lib/utils'
 export function Emblem({
   src,
   className,
+  invert = false,
 }: {
   src: string
   className?: string
+  invert?: boolean
 }) {
   return (
     <span
-      className={cn('relative block size-12 shrink-0', className)}
+      className={cn('relative block size-11 shrink-0', className)}
       aria-hidden
     >
       <Image
@@ -20,16 +22,21 @@ export function Emblem({
         alt=""
         fill
         sizes="56px"
-        className="object-contain"
+        className={cn(
+          'object-contain',
+          invert && '[filter:brightness(0)_invert(1)]',
+        )}
       />
     </span>
   )
 }
 
 /**
- * A bordered, rounded-rectangle section block. Every category is outlined with
- * soft corners and titled with an emblem + bold heading in the top-left —
- * matching the reference board (no solid-black title bars).
+ * A category block. Two title treatments, matching the reference board:
+ *  - variant="bar": a solid dark-brown rounded title bar with a white icon and
+ *    white heading, sitting on the open cream background (no panel) — БУРГЕРЫ.
+ *  - variant="panel" (default): a soft rounded panel with a subtle border and
+ *    an inline emblem + dark heading — everything else.
  */
 export function Section({
   emblem,
@@ -38,6 +45,7 @@ export function Section({
   children,
   className,
   bodyClassName,
+  variant = 'panel',
 }: {
   emblem: string
   title: string
@@ -45,7 +53,27 @@ export function Section({
   children: ReactNode
   className?: string
   bodyClassName?: string
+  variant?: 'panel' | 'bar'
 }) {
+  if (variant === 'bar') {
+    return (
+      <section className={cn('flex flex-col', className)}>
+        <header className="mb-3 flex items-center">
+          <div className="inline-flex items-center gap-3 rounded-2xl bg-menu-dark px-5 py-2.5 shadow-sm">
+            <Emblem src={emblem} className="size-8" invert />
+            <h2 className="font-heading text-[1.7rem] font-black uppercase leading-none tracking-tight text-menu-oncream">
+              {title}
+            </h2>
+          </div>
+          {right ? <div className="ml-auto">{right}</div> : null}
+        </header>
+        <div className={cn('flex min-h-0 flex-1 flex-col', bodyClassName)}>
+          {children}
+        </div>
+      </section>
+    )
+  }
+
   return (
     <section
       className={cn(
@@ -55,7 +83,7 @@ export function Section({
     >
       <header className="mb-2 flex items-center gap-3">
         <Emblem src={emblem} />
-        <h2 className="font-heading text-[1.75rem] font-black uppercase leading-none tracking-tight text-menu-dark">
+        <h2 className="font-heading text-[1.7rem] font-black uppercase leading-none tracking-tight text-menu-dark">
           {title}
         </h2>
         {right ? <div className="ml-auto">{right}</div> : null}
@@ -67,7 +95,7 @@ export function Section({
   )
 }
 
-/** Prominent brown price pill with a small BYN suffix. */
+/** Soft tan price chip with a small BYN suffix — used for boxed prices. */
 export function PriceBadge({
   children,
   size = 'md',
@@ -80,7 +108,7 @@ export function PriceBadge({
   return (
     <span
       className={cn(
-        'inline-flex items-baseline gap-1 rounded-xl bg-menu-brown font-heading font-black leading-none text-menu-oncream shadow-sm ring-1 ring-black/5',
+        'inline-flex items-baseline gap-1 rounded-xl bg-menu-chip font-heading font-black leading-none text-menu-dark',
         size === 'sm' && 'px-2.5 py-1.5',
         size === 'md' && 'px-3 py-2',
         size === 'lg' && 'px-3.5 py-2.5',
@@ -96,36 +124,39 @@ export function PriceBadge({
       >
         {children}
       </span>
-      <span className="text-[0.6rem] font-bold opacity-80">BYN</span>
+      <span className="text-[0.6rem] font-bold opacity-70">BYN</span>
     </span>
   )
 }
 
-/** A single S/M/L size chip with its price stacked beneath the size letter. */
-export function SizePrice({ label, price }: { label: string; price: string }) {
+/** Plain text price (number + small BYN) — used for hot dogs, no chip. */
+export function PriceText({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex flex-col items-center gap-1 rounded-xl border-2 border-menu-line bg-menu-cream px-3 py-1.5">
-      <span className="grid size-6 place-items-center rounded-full bg-menu-dark font-heading text-xs font-black text-menu-oncream">
-        {label}
-      </span>
-      <span className="font-heading text-xl font-black leading-none text-menu-brown">
-        {price}
-        <span className="ml-0.5 text-[0.55rem] font-bold text-menu-muted">
-          BYN
-        </span>
-      </span>
+    <span className="inline-flex items-baseline gap-1 font-heading font-black leading-none text-menu-brown-ink">
+      <span className="text-2xl">{children}</span>
+      <span className="text-[0.6rem] font-bold opacity-70">BYN</span>
     </span>
   )
 }
 
-/** Header row of S / M / L size dots used above sized sections. */
+/** A single price chip beneath the S/M/L header, no letter inside. */
+export function SizePrice({ price }: { price: string }) {
+  return (
+    <span className="inline-flex w-[3.5rem] items-baseline justify-center gap-0.5 rounded-xl bg-menu-chip px-2 py-2 font-heading font-black leading-none text-menu-dark">
+      <span className="text-xl">{price}</span>
+      <span className="text-[0.5rem] font-bold opacity-70">BYN</span>
+    </span>
+  )
+}
+
+/** Header row of S / M / L outlined circles used above sized sections. */
 export function SizeDots({ labels = ['S', 'M', 'L'] }: { labels?: string[] }) {
   return (
     <div className="flex items-center gap-2">
       {labels.map((l) => (
         <span
           key={l}
-          className="grid size-9 place-items-center rounded-full bg-menu-dark font-heading text-sm font-black text-menu-oncream"
+          className="grid size-9 place-items-center rounded-full border-[2.5px] border-menu-dark font-heading text-sm font-black text-menu-dark"
         >
           {l}
         </span>
@@ -134,10 +165,31 @@ export function SizeDots({ labels = ['S', 'M', 'L'] }: { labels?: string[] }) {
   )
 }
 
-export function HitBadge() {
+/** Yellow starburst "вспышка" seal with ХИТ text, as on the reference board. */
+export function HitBadge({ className }: { className?: string }) {
+  const spikes = 12
+  const outer = 50
+  const inner = 41
+  const cx = 50
+  const cy = 50
+  const step = Math.PI / spikes
+  const pts: string[] = []
+  for (let i = 0; i < 2 * spikes; i++) {
+    const r = i % 2 === 0 ? outer : inner
+    const a = i * step - Math.PI / 2
+    pts.push(`${(cx + r * Math.cos(a)).toFixed(2)},${(cy + r * Math.sin(a)).toFixed(2)}`)
+  }
   return (
-    <span className="inline-block rounded-md bg-menu-accent px-2 py-0.5 font-heading text-xs font-black uppercase tracking-wider text-menu-accent-ink shadow-sm">
-      Хит
+    <span
+      className={cn('relative inline-grid size-9 place-items-center', className)}
+      aria-label="Хит"
+    >
+      <svg viewBox="0 0 100 100" className="absolute inset-0 size-full">
+        <polygon points={pts.join(' ')} fill="var(--menu-accent)" />
+      </svg>
+      <span className="relative font-heading text-[0.62rem] font-black uppercase tracking-tight text-menu-accent-ink">
+        Хит
+      </span>
     </span>
   )
 }
@@ -147,9 +199,8 @@ export function Divider() {
 }
 
 /**
- * Real product photo, sliced from the reference board. It sits directly on the
- * cream background (no frame) with object-contain so the cut-out shape reads
- * cleanly, exactly like the reference menu.
+ * Real product photo. It sits directly on the cream background (no frame) with
+ * object-contain so the cut-out shape reads cleanly, like the reference menu.
  */
 export function FoodPhoto({
   src,

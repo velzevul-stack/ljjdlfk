@@ -1,9 +1,15 @@
+import { Scale } from 'lucide-react'
 import { burgers } from '@/lib/menu-data'
 import { Section, PriceBadge, HitBadge, Divider, FoodPhoto } from './parts'
 
 export function BurgersColumn() {
   return (
-    <Section emblem="/emblems/burgers.png" title="Бургеры" className="h-full">
+    <Section
+      emblem="/emblems/burgers.png"
+      title="Бургеры"
+      variant="bar"
+      className="h-full"
+    >
       <div className="flex flex-1 flex-col">
         {burgers.map((b, i) => (
           <div key={b.name} className="flex flex-1 flex-col justify-center">
@@ -11,7 +17,7 @@ export function BurgersColumn() {
               <FoodPhoto
                 src={b.image}
                 alt={b.name}
-                className="h-[5rem] w-[6rem]"
+                className="h-[5.4rem] w-[6.4rem]"
               />
               <div className="min-w-0 flex-1">
                 <div className="flex items-start justify-between gap-2">
@@ -26,7 +32,8 @@ export function BurgersColumn() {
                 <p className="mt-1.5 text-sm leading-snug text-menu-muted">
                   {b.ingredients}
                 </p>
-                <p className="mt-1.5 font-heading text-xs font-bold uppercase tracking-wide text-menu-brown">
+                <p className="mt-1.5 flex items-center gap-1.5 font-heading text-xs font-bold uppercase tracking-wide text-menu-brown">
+                  <Scale className="size-3.5" strokeWidth={2.5} aria-hidden />
                   {b.weight}
                 </p>
               </div>
