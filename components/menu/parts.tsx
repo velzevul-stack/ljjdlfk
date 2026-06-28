@@ -42,6 +42,34 @@ export function Section({
   )
 }
 
+/**
+ * A standalone category header row: an icon badge, the title, and an optional
+ * right-aligned slot (size labels, column headers, etc.).
+ */
+export function SectionTitle({
+  icon: Icon,
+  right,
+  children,
+  className,
+}: {
+  icon: LucideIcon
+  right?: ReactNode
+  children: ReactNode
+  className?: string
+}) {
+  return (
+    <header className={cn('flex items-center gap-3', className)}>
+      <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-menu-dark text-menu-oncream">
+        <Icon className="size-5" strokeWidth={2.25} aria-hidden />
+      </span>
+      <h2 className="font-heading text-[1.6rem] font-extrabold uppercase leading-none tracking-tight text-menu-text">
+        {children}
+      </h2>
+      {right ? <div className="ml-auto">{right}</div> : null}
+    </header>
+  )
+}
+
 export function PriceBadge({
   children,
   size = 'md',
