@@ -72,7 +72,7 @@
 
   /* Menu board palette — matched to the bone/milk reference */
   --menu-cream: #f3e7cf;       /* main board background — warm golden cream */
-  --menu-panel: #f6ecda;       /* panel fill — same warm cream as background */
+  --menu-panel: #f3e7cf;       /* panel fill — identical to background, no contrast */
   --menu-line: #dcc8a2;        /* panel border */
   --menu-divider: #e8d5b4;     /* item separator lines */
   --menu-dark: #28190a;        /* КОМБО bar, deep bg */
