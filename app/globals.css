@@ -17,9 +17,7 @@
   --color-menu-line: var(--menu-line);
   --color-menu-divider: var(--menu-divider);
   --color-menu-dark: var(--menu-dark);
-  --color-menu-title-bar: var(--menu-title-bar);
   --color-menu-brown: var(--menu-brown);
-  --color-menu-orange: var(--menu-orange);
   --color-menu-brown-ink: var(--menu-brown-ink);
   --color-menu-chip: var(--menu-chip);
   --color-menu-text: var(--menu-text);
@@ -70,24 +68,22 @@
 :root {
   color-scheme: light;
 
-  /* Menu board palette — matched to the bone/milk reference */
-  --menu-cream: #f5edd3;       /* main board background — warm bone/milk */
-  --menu-panel: #fdf8ee;       /* panel fill — near-white ivory */
-  --menu-line: #d9c899;        /* panel border */
-  --menu-divider: #e3d4b0;     /* item separator lines */
-  --menu-dark: #28190a;        /* КОМБО bar, deep bg */
-  --menu-title-bar: #6b3e1c;   /* БУРГЕРЫ title bar — espresso brown */
-  --menu-brown: #a8631e;       /* section headings (non-bar), accents */
-  --menu-brown-ink: #7a4915;   /* weight labels, muted text */
-  --menu-chip: #e8d48e;        /* price chip fill — golden tan */
-  --menu-text: #2e1e0d;        /* item names */
-  --menu-muted: #8b6b48;       /* description text */
-  --menu-accent: #f5bf1a;      /* ХИТ badge, КОМБО price */
-  --menu-accent-ink: #1e1000;  /* text on accent */
-  --menu-oncream: #f7edd6;     /* text on dark bars */
-  --menu-orange: #d4611a;      /* burger emblem tint */
+  /* Menu board palette — sampled from the reference board (warm, brown) */
+  --menu-cream: #f4e6c6;
+  --menu-panel: #faf1da;
+  --menu-line: #e0cda3;
+  --menu-divider: #e6d4ad;
+  --menu-dark: #2c1d0f;
+  --menu-brown: #b1742f;
+  --menu-brown-ink: #8a5a25;
+  --menu-chip: #e6cd95;
+  --menu-text: #382716;
+  --menu-muted: #8f7150;
+  --menu-accent: #f6c224;
+  --menu-accent-ink: #2c1d0f;
+  --menu-oncream: #f7edd6;
 
-  --background: #f5edd3;
+  --background: #f4e6c6;
   --foreground: #2a221c;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
