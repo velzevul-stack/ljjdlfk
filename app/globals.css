@@ -72,9 +72,9 @@
 
   /* Menu board palette — matched to the bone/milk reference */
   --menu-cream: #f3e7cf;       /* main board background — warm golden cream */
-  --menu-panel: #fdf8ee;       /* panel fill — near-white ivory */
-  --menu-line: #d9c899;        /* panel border */
-  --menu-divider: #e3d4b0;     /* item separator lines */
+  --menu-panel: #f6ecda;       /* panel fill — same warm cream as background */
+  --menu-line: #dcc8a2;        /* panel border */
+  --menu-divider: #e8d5b4;     /* item separator lines */
   --menu-dark: #28190a;        /* КОМБО bar, deep bg */
   --menu-title-bar: #6b3e1c;   /* БУРГЕРЫ title bar — espresso brown */
   --menu-brown: #a8631e;       /* section headings (non-bar), accents */
