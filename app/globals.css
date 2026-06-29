@@ -71,10 +71,10 @@
   color-scheme: light;
 
   /* Menu board palette — matched to the bone/milk reference */
-  --menu-cream: #f3e7cf;       /* main board background — warm golden cream */
-  --menu-panel: #f3e7cf;       /* panel fill — identical to background, no contrast */
-  --menu-line: #dcc8a2;        /* panel border */
-  --menu-divider: #e8d5b4;     /* item separator lines */
+  --menu-cream: #f5edd3;       /* main board background — warm bone/milk */
+  --menu-panel: #fdf8ee;       /* panel fill — near-white ivory */
+  --menu-line: #d9c899;        /* panel border */
+  --menu-divider: #e3d4b0;     /* item separator lines */
   --menu-dark: #28190a;        /* КОМБО bar, deep bg */
   --menu-title-bar: #6b3e1c;   /* БУРГЕРЫ title bar — espresso brown */
   --menu-brown: #a8631e;       /* section headings (non-bar), accents */
@@ -87,7 +87,7 @@
   --menu-oncream: #f7edd6;     /* text on dark bars */
   --menu-orange: #d4611a;      /* burger emblem tint */
 
-  --background: #f3e7cf;
+  --background: #f5edd3;
   --foreground: #2a221c;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
